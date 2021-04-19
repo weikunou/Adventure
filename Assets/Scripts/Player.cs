@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
     /// </summary>
     public int coin;
 
+    public DynamicJoystick joystick;
+
     /// <summary>
     /// 刚体
     /// </summary>
@@ -78,10 +80,11 @@ public class Player : MonoBehaviour
     /// </summary>
     void PlayerMove()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        //float horizontal = Input.GetAxisRaw("Horizontal");
+        float horizontal = joystick.Horizontal;
 
         // 左右移动
-        if(horizontal != 0)
+        if (horizontal != 0)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
             transform.localScale = new Vector2(horizontal, 1);
@@ -109,6 +112,17 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             rb.gravityScale = 3;
             canJump = false;
+        }
+    }
+
+    /// <summary>
+    /// 跳跃按钮
+    /// </summary>
+    public void JumpButton()
+    {
+        if (isGround)
+        {
+            canJump = true;
         }
     }
 
