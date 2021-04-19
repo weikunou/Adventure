@@ -143,6 +143,7 @@ public class Player : MonoBehaviour
         if (collision.name.Contains("Trap"))
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            GameManager.instance.GameOver();
         }
     }
 }

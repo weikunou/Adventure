@@ -1,22 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
-/// UI 管理器类
+/// 游戏管理器类
 /// </summary>
-public class UIManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     /// <summary>
     /// 单例
     /// </summary>
-    public static UIManager instance;
-
-    /// <summary>
-    /// 金币数量文本
-    /// </summary>
-    public Text coinText;
+    public static GameManager instance;
 
     void Awake()
     {
@@ -35,17 +30,16 @@ public class UIManager : MonoBehaviour
         
     }
 
-
     void Update()
     {
         
     }
 
     /// <summary>
-    /// 更新金币数量
+    /// 游戏结束
     /// </summary>
-    public void UpdateCoinText(int coin)
+    public void GameOver()
     {
-        coinText.text = "金币：" + coin;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
