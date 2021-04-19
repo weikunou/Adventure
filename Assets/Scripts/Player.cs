@@ -43,6 +43,11 @@ public class Player : MonoBehaviour
     public LayerMask groundLayer;
 
     /// <summary>
+    /// 金币数
+    /// </summary>
+    public int coin;
+
+    /// <summary>
     /// 刚体
     /// </summary>
     Rigidbody2D rb;
@@ -124,5 +129,20 @@ public class Player : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name.Contains("Coin"))
+        {
+            coin++;
+            UIManager.instance.UpdateCoinText(coin);
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.name.Contains("Trap"))
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
     }
 }
