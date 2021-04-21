@@ -28,11 +28,13 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
     {
-        
+
     }
 
 
@@ -46,6 +48,6 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void UpdateCoinText(int coin)
     {
-        coinText.text = "金币：" + coin;
+        coinText.text = "金币：" + (coin + GameManager.instance.currentCoins);
     }
 }

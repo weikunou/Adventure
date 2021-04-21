@@ -57,6 +57,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        UIManager.instance.UpdateCoinText(coin);
     }
 
     void FixedUpdate()
@@ -80,8 +82,8 @@ public class Player : MonoBehaviour
     /// </summary>
     void PlayerMove()
     {
-        //float horizontal = Input.GetAxisRaw("Horizontal");
-        float horizontal = joystick.Horizontal;
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        //float horizontal = joystick.Horizontal;
 
         // 左右移动
         if (horizontal != 0)
@@ -151,6 +153,12 @@ public class Player : MonoBehaviour
         {
             coin++;
             UIManager.instance.UpdateCoinText(coin);
+
+            if(coin == GameManager.instance.targetCoins)
+            {
+                GameManager.instance.ShowDoor();
+            }
+
             Destroy(collision.gameObject);
         }
 
@@ -158,6 +166,12 @@ public class Player : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             GameManager.instance.GameOver();
+        }
+
+        if (collision.name.Contains("Door"))
+        {
+            GameManager.instance.currentCoins = coin;
+            GameManager.instance.NextLevel();
         }
     }
 }
