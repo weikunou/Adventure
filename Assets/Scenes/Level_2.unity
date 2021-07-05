@@ -792,7 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ccb601f6f5c6d41a7f45ec71bc6a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: file:///C:/Projects/Unity/Adventure/AssetBundles/StandaloneWindows/coin
+  path: https://raw.githubusercontent.com/weikunou/Adventure/main/AssetBundles/StandaloneWindows/coin
   coins: {fileID: 1100246333}
 --- !u!4 &296525077
 Transform:
